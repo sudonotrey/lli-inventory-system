@@ -35,5 +35,31 @@ const inventorySummary = async (req, res, next) => {
   } catch (err) { next(err); }
 };
 
+// Report 2: Low Stock — uses reorder_level per product
+const lowStock = async (req, res, next) => {
+  try {
+    const pool = await poolPromise;
+    const result = await pool.request().query(`
+      SELECT
+        p.name,
+        p.generic_name,
+        p.sku,
+        p.batch_number,
+        p.quantity,
+        p.reorder_level,
+        p.unit_price,
+        ISNULL(c.name, 'Uncategorized')  AS category,
+        ISNULL(s.name, 'N/A')            AS supplier,
+        ISNULL(u.abbreviation, '')       AS unit
+      FROM Products p
+      LEFT JOIN Categories c ON p.category_id = c.id
+      LEFT JOIN Suppliers  s ON p.supplier_id = s.id
+      LEFT JOIN Units      u ON p.unit_id     = u.id
+      WHERE p.quantity <= p.reorder_level
+      ORDER BY p.quantity ASC
+    `);
+    res.json({ success: true, data: result.recordset });
+  } catch (err) { next(err); }
+};
 
-module.exports = { inventorySummary, lowStock, expiryReport };
+module.exports = { inventorySummary, lowStock };
