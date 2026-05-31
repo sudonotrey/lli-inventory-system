@@ -62,4 +62,36 @@ const lowStock = async (req, res, next) => {
   } catch (err) { next(err); }
 };
 
-module.exports = { inventorySummary, lowStock };
+// Report 3: Expiry Report — items expiring within 90 days or already expired
+const expiryReport = async (req, res, next) => {
+  try {
+    const pool = await poolPromise;
+    const result = await pool.request().query(`
+      SELECT
+        p.name,
+        p.generic_name,
+        p.sku,
+        p.batch_number,
+        p.quantity,
+        p.expiry_date,
+        DATEDIFF(DAY, GETDATE(), p.expiry_date) AS days_until_expiry,
+        CASE
+          WHEN p.expiry_date < GETDATE()                          THEN 'Expired'
+          WHEN DATEDIFF(DAY, GETDATE(), p.expiry_date) <= 30      THEN 'Critical'
+          WHEN DATEDIFF(DAY, GETDATE(), p.expiry_date) <= 90      THEN 'Near Expiry'
+          ELSE 'OK'
+        END AS expiry_status,
+        ISNULL(c.name, 'Uncategorized') AS category,
+        ISNULL(s.name, 'N/A')           AS supplier
+      FROM Products p
+      LEFT JOIN Categories c ON p.category_id = c.id
+      LEFT JOIN Suppliers  s ON p.supplier_id = s.id
+      WHERE p.expiry_date IS NOT NULL
+        AND p.expiry_date <= DATEADD(DAY, 90, GETDATE())
+      ORDER BY p.expiry_date ASC
+    `);
+    res.json({ success: true, data: result.recordset });
+  } catch (err) { next(err); }
+};
+
+module.exports = { inventorySummary, lowStock, expiryReport };
