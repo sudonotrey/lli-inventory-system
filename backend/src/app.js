@@ -5,6 +5,7 @@ require('dotenv').config();
 const errorHandler = require('./middleware/errorHandler');
 const authRoutes   = require('./routes/auth.routes');
 const categoryRoutes  = require('./routes/category.routes');
+const supplierRoutes  = require('./routes/supplier.routes');
 
 const app = express();
 
@@ -14,6 +15,8 @@ app.use(express.json());
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/categories', categoryRoutes);
+app.use('/api/suppliers',  supplierRoutes);
+
 
 // Check API
 app.get('/', (req, res) => {
