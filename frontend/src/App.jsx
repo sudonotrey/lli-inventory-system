@@ -2,6 +2,7 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import LoginPage from './pages/LoginPage'
 import DashboardPage  from './pages/DashboardPage'
 import CategoriesPage from './pages/CategoriesPage'
+import SuppliersPage  from './pages/SuppliersPage'
 import MainLayout     from './components/MainLayout'
 import AdminRoute from './components/AdminRoute'
 
@@ -20,6 +21,7 @@ function App() {
         <Route index element={<Navigate to='/dashboard' />} />
         <Route path='dashboard' element={<DashboardPage />} />
         <Route path='categories' element={<CategoriesPage />} />
+        <Route path='suppliers'  element={<SuppliersPage />}  />
         {/* Add more protected routes here */}
       </Route>
       <Route path='*' element={<Navigate to='/login' />} />
