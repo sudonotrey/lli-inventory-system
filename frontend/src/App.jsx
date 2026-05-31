@@ -3,6 +3,7 @@ import LoginPage from './pages/LoginPage'
 import DashboardPage  from './pages/DashboardPage'
 import CategoriesPage from './pages/CategoriesPage'
 import SuppliersPage  from './pages/SuppliersPage'
+import UnitsPage      from './pages/UnitsPage'
 import MainLayout     from './components/MainLayout'
 import AdminRoute from './components/AdminRoute'
 
@@ -22,6 +23,7 @@ function App() {
         <Route path='dashboard' element={<DashboardPage />} />
         <Route path='categories' element={<CategoriesPage />} />
         <Route path='suppliers'  element={<SuppliersPage />}  />
+        <Route path='units'      element={<UnitsPage />}      />
         {/* Add more protected routes here */}
       </Route>
       <Route path='*' element={<Navigate to='/login' />} />
