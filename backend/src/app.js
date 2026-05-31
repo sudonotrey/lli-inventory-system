@@ -6,6 +6,7 @@ const errorHandler = require('./middleware/errorHandler');
 const authRoutes   = require('./routes/auth.routes');
 const categoryRoutes  = require('./routes/category.routes');
 const supplierRoutes  = require('./routes/supplier.routes');
+const unitRoutes      = require('./routes/unit.routes');
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/categories', categoryRoutes);
 app.use('/api/suppliers',  supplierRoutes);
+app.use('/api/units',      unitRoutes);
 
 
 // Check API
