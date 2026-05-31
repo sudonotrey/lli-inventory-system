@@ -16,18 +16,18 @@ function App() {
       <Route
         path='/'
         element={
-          <PrivateRoute>
+          <AdminRoute>
             <MainLayout />
-          </PrivateRoute>
+          </AdminRoute>
         }
       >
         <Route index element={<Navigate to='/dashboard' />} />
         <Route path='dashboard' element={<DashboardPage />} />
         <Route path='categories' element={<CategoriesPage />} />
-        <Route path='suppliers'  element={<SuppliersPage />}  />
-        <Route path='units'      element={<UnitsPage />}      />
-        <Route path='products'   element={<ProductsPage />}   />
-        <Route path='reports'    element={<ReportsPage />}    />
+        <Route path='suppliers'  element={<SuppliersPage />} />
+        <Route path='units'      element={<UnitsPage />} />
+        <Route path='products'   element={<ProductsPage />} />
+        <Route path='reports'    element={<ReportsPage />} />
       </Route>
       <Route path='*' element={<Navigate to='/login' />} />
     </Routes>

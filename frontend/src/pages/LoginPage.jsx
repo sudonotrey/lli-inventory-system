@@ -1,3 +1,4 @@
+import React, { useState } from 'react'
 import { Form, Input, Button, Card, Typography, message } from 'antd'
 import { UserOutlined, LockOutlined, MedicineBoxOutlined } from '@ant-design/icons'
 import { useNavigate } from 'react-router-dom'
@@ -10,7 +11,7 @@ const LoginPage = () => {
   const navigate  = useNavigate()
   const login     = useAuthStore((s) => s.login)
   const [form]    = Form.useForm()
-  const [loading, setLoading] = React.useState(false)
+  const [loading, setLoading] = useState(false)
 
   const onFinish = async (values) => {
     setLoading(true)

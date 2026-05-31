@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Layout, Menu, Avatar, Dropdown, Typography, theme } from 'antd'
-import {DashboardOutlined, MedicineBoxOutlined, AppstoreOutlined, TeamOutlined, ExperimentOutlined, BarChartOutlined, LogoutOutlined, UserOutlined, MenuFoldOutlined, MenuUnfoldOutlined} from '@ant-design/icons'
+import {DashboardOutlined, MedicineBoxOutlined, AppstoreOutlined, TeamOutlined, ExperimentOutlined, BarChartOutlined, LogoutOutlined, UserOutlined, MenuFoldOutlined, MenuUnfoldOutlined,} from '@ant-design/icons'
 import { useNavigate, useLocation, Outlet } from 'react-router-dom'
 import useAuthStore from '../store/authStore'
 import api from '../api/axios'
