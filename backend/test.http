@@ -1,0 +1,44 @@
+### Login - Success
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin123"
+}
+
+###
+
+### Login - Wrong Password
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "wrongpassword"
+}
+
+###
+
+### Login - Missing Fields
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "admin"
+}
+
+###
+
+GET http://localhost:5000/api/categories
+Authorization: Bearer YOUR_JWT_TOKEN_HERE
+
+###
+
+### Protected Route - No Token
+GET http://localhost:5000/api/categories
+
+###
+
+### Logout
+POST http://localhost:5000/api/auth/logout
