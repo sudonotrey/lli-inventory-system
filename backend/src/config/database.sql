@@ -1,7 +1,7 @@
-CREATE DATABASE InventoryDB;
+CREATE DATABASE lli_inventoryDB;
 GO
 
-USE InventoryDB;
+USE lli_inventoryDB;
 GO
 
 -- Users table
